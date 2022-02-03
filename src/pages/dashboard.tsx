@@ -1,14 +1,17 @@
 import Link from "next/link"
-import { UserMock } from "../mock/user"
+import { useContext } from "react"
+import { AuthContext } from "../contexts/AuthContext"
 
 export default function Dashboard() {
+  const { user } = useContext(AuthContext)
+
   return (
     <div>
-      <h1>Olá {UserMock.name}</h1>
+      <h1>Olá {user.name}</h1>
       <p>É bom ter você de volta!</p>
       <p>Continue aprendendo, retorne da aula que parou.</p>
 
-      {UserMock.journeys.map(journey => (
+      {user.journeys.map(journey => (
         <Link href={`/journey/${journey.slug}`} key={journey.slug}>
           <a>
             <h1>{journey.title}</h1>

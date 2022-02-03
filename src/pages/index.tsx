@@ -1,6 +1,4 @@
 import { FormEvent, useContext, useState } from "react"
-import Router from "next/router"
-import { api } from "../services/api"
 import { AuthContext } from "../contexts/AuthContext"
 
 export default function SignIn() {
@@ -8,17 +6,9 @@ export default function SignIn() {
   const [password, setPassword] = useState('')
   const { signIn } = useContext(AuthContext)
 
-  async function signInRedirectToDashboard() {
-    return signIn({ email, password }).then(() => {
-      Router.push('/dashboard')
-    }).catch(error => {
-      alert(error)
-    })
-  }
-
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
-    signInRedirectToDashboard()
+    await signIn({ email, password })
   }
 
   return (

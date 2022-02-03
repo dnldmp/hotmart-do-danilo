@@ -1,3 +1,5 @@
+import Router from "next/router";
+import { setCookie } from "nookies";
 import { createContext, ReactNode, useState } from "react";
 import { api } from "../services/api";
 
@@ -35,8 +37,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function signIn({ email, password }: SignInCredentials) {
     try {
-      const { data } = await api.post('login', { email, password })
+      const { data } = await api.post('gay', { email, password })
+      
       setUser(data)
+
+      const { token, refreshToken } = data
+
+      setCookie(undefined, 'nextauth.token', token, {
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+        path: '/'
+      })
+      setCookie(undefined, 'nextauth.refreshToken', refreshToken, {
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+        path: '/'
+      })
+
+      Router.push('/dashboard')
     } catch (error) {
       console.error(error)
     }

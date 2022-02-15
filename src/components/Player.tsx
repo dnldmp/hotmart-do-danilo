@@ -64,8 +64,15 @@ export function Player() {
   } = usePlayerState($videoPlayer)
 
   return (
-    <Flex flexDir='column'>
+    <Flex flexDir='column'w={540}>
+      
       <video 
+        style={{ 
+          cursor: "pointer", 
+          borderTopRightRadius: '8px', 
+          borderTopLeftRadius: '8px' 
+        }}
+        onClick={toggleVideoPlay}
         ref={$videoPlayer}
         onTimeUpdate={handleTimeUpdate}
         src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" 
@@ -82,7 +89,7 @@ export function Player() {
         <Select w={150}>
           {[0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2].map(speed => (
             <option
-              onClick={() => handleChangePlaybackRate(speed)}
+              onChange={() => handleChangePlaybackRate(speed)}
               key={`speedChange_${speed}`}
             >
               {speed} x

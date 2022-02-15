@@ -36,11 +36,11 @@ export default function SignIn() {
         <Stack w="100%" spacing='8'>
           <Stack spacing="2">
             <FormLabel color="#fff" htmlFor="email">E-mail:</FormLabel>
-            <Input color="#fff" name="email" value={email} onChange={(e) => setEmail(e.target.value)} type="email" />
+            <Input color="#fff" required name="email" value={email} onChange={(e) => setEmail(e.target.value)} type="email" />
           </Stack>
           <Stack spacing="2">
             <FormLabel color="#fff" htmlFor="password">Password:</FormLabel>
-            <Input  color="#fff"name="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+            <Input  color="#fff" required name="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
           </Stack>
           <Button type="submit">Login</Button>
         </Stack>
